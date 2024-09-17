@@ -1,9 +1,7 @@
 const sacarNota = (media) => {
   if (media >= 0 && media < 5) {
     return console.log("Suspenso");
-  }
-
-  if (media >= 5 && media < 7) {
+  } if (media >= 5 && media < 7) {
     return console.log("APROBADO");
   }
 
@@ -25,7 +23,6 @@ for (let index = 1; index < 4; index++) {
 
   //Better Comments
   //! Si el número introducido no es correcto (es menor que 0 o mayor que 10), la media siempre se calcula
-  //TODO: Se tendría que arreglar, aunque de momento se quedará así.
   sumaNumerosPromt += parseFloat(prompt(`Introduce tu nota ${index}`));
 }
 
