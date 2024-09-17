@@ -22,6 +22,10 @@ let sumaNumerosPromt = 0;
 let media = 0;
 
 for (let index = 1; index < 4; index++) {
+
+  //Better Comments
+  //! Si el número introducido no es correcto (es menor que 0 o mayor que 10), la media siempre se calcula
+  //TODO: Se tendría que arreglar, aunque de momento se quedará así.
   sumaNumerosPromt += parseFloat(prompt(`Introduce tu nota ${index}`));
 }
 
