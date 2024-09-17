@@ -1,6 +1,6 @@
 # dwec_ejercicios_2425
-## Ejercicios de DWEC de Miguel Rodríguez García
 
+## Ejercicios de DWEC de Miguel Rodríguez García
 
 Ejercicios y ejemplos de Javascritp para el módulo DWEC (DAW2).
 
