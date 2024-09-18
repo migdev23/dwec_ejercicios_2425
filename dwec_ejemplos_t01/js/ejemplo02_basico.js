@@ -59,3 +59,23 @@ function ejemplo02() {
     console.log("Número grande (BigInt):", numeroGrande, typeof numeroGrande);
 }
 
+
+
+function ejemplo03() {
+    let x = 1.01 + 1.02;
+    console.log(x); //! 2.0300000000000002
+
+    let x1 = 1.01;
+    let x2 = 1.02;
+    let x3 = x1 + x2;
+    console.log(x3); //! 2.03
+
+    /**
+     * JavaScript no aplica automáticamente métodos como toFixed() o toPrecision() internamente. 
+     * El motor de JavaScript, como V8 (usado en Chrome y Node.js) o SpiderMonkey (en Firefox), 
+     * puede decidir cómo mostrar los números en ciertos entornos como la consola. 
+     * Esto no significa que el número haya cambiado internamente, 
+     * solo es una decisión de presentación más amigable por parte del motor.
+     */
+}
+
