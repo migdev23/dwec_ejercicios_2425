@@ -11,21 +11,17 @@ const pedirNumero = () => {
 };
 
 const sacarFactorial = (numero) => {
-    let total = 0;
-    
-    for (let index = numero; index >= 1; index--) {
-        console.log(`${index} * ${index-1}`)
-        total += (index*(index-1))
-    }
+  //Aqui sacamos el total de la primera operacion ej: 5*4
+  let total = ((numero * (numero - 1)) == 0) ? 1 : (numero * (numero - 1));
 
-    return total
-}
+  //Aqui en la primera vuelta operamos directamente quitandole 2 continuacion del ej: total*3
+  for (let index = numero - 2; index >= 1; index--) {
+    total *= index;
+  };
 
-let numeroUsuarioRecibido = pedirNumero();
+  return total;
+};
 
-if (numeroUsuarioRecibido == 0) {
-  alert("El factorial de 0 es 1");
-} else {
-    const factorial = sacarFactorial(numeroUsuarioRecibido)
-    console.log(factorial)
-}
+const numeroUsuarioRecibido = pedirNumero();
+const factorialNumeroRecibidoUsuario = sacarFactorial(numeroUsuarioRecibido);
+console.log(`El factorial de ${numeroUsuarioRecibido} es: ${factorialNumeroRecibidoUsuario}`);
