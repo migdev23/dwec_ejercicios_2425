@@ -31,8 +31,8 @@ console.log(txt4);
 const cad = "W3Schools";
 
 let txt5 = "";
-for (let x of cad ) {
-    txt5 += x + " ";
+for (let x in cad ) {
+    txt5 += cad[x] + " ";
 }
 
 let txt6 = "";
