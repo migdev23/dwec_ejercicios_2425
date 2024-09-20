@@ -9,8 +9,8 @@ const pedirArrNumerosUsuario = () => {
     );
   } while (isNaN(numerosUsuario) || numerosUsuario <= 0);
 
-  for (let index = 1; index <= numerosUsuario; index++)
-    arr.push(parseInt(prompt(`Introduce el numero ${index}`)));
+  for (let index = 0; index < numerosUsuario; index++)
+    arr.push(parseInt(prompt(`Introduce el numero ${index+1}`)));
 
   return arr;
 };
@@ -33,6 +33,16 @@ const sacarSuperioresAlaMedia = (media, arr) => {
   return numerosMayoresAlaMedia.length;
 };
 
+const obtenerMaximoArr = (arr) => {
+  const numeroMayor = Math.max(...arr);
+  return numeroMayor;
+};
+
+const sacarNumeroMaximos = (nmax, arr) => {
+  const numerosMayoresIgualesMayor = arr.filter((numero) => numero == nmax);
+  return numerosMayoresIgualesMayor.length;
+};
+
 const mostrarArr = (arr) => {
   arr.forEach((n) => {
     console.log(n);
@@ -42,5 +52,8 @@ const mostrarArr = (arr) => {
 let arrNumerosUsuario = pedirArrNumerosUsuario();
 let media = sacarMediaArr(arrNumerosUsuario);
 let numeroMayoresAlaMedia = sacarSuperioresAlaMedia(media, arrNumerosUsuario);
-console.log(numeroMayoresAlaMedia);
+let numeroMaximoArr = obtenerMaximoArr(arrNumerosUsuario);
+let cantidadNumerosIgualesAlMayor = sacarNumeroMaximos(numeroMaximoArr, arrNumerosUsuario)
+console.log(`Numeros cantidad de numeros iguales al mayor: ${cantidadNumerosIgualesAlMayor}`)
+console.log(`Numeros mayores ala media: ${numeroMayoresAlaMedia} `);
 mostrarArr(arrNumerosUsuario);
