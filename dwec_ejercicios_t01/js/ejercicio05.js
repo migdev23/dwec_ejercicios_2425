@@ -28,18 +28,19 @@ const sacarMediaArr = (arr) => {
   return media;
 };
 
-const sacarSuperioresAlaMedia = (media, arr) =>{
-    const numerosMayoresAlaMedia = arr.filter((numero) => numero > media);
-    return numerosMayoresAlaMedia.length
-}
+const sacarSuperioresAlaMedia = (media, arr) => {
+  const numerosMayoresAlaMedia = arr.filter((numero) => numero > media);
+  return numerosMayoresAlaMedia.length;
+};
 
-const mostrarArr = (arr) =>{
-    arr.forEach((n) => {
-        console.log(n)
-    })
-}
+const mostrarArr = (arr) => {
+  arr.forEach((n) => {
+    console.log(n);
+  });
+};
 
 let arrNumerosUsuario = pedirArrNumerosUsuario();
 let media = sacarMediaArr(arrNumerosUsuario);
-let numeroMayoresAlaMedia = sacarSuperioresAlaMedia(media, arrNumerosUsuario)
-mostrarArr(arrNumerosUsuario)
+let numeroMayoresAlaMedia = sacarSuperioresAlaMedia(media, arrNumerosUsuario);
+console.log(numeroMayoresAlaMedia);
+mostrarArr(arrNumerosUsuario);
