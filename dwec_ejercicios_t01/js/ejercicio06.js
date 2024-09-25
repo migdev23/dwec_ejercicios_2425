@@ -32,6 +32,18 @@ const sumarMatrizes = (matriz1, matriz2) => {
     
 };
 
+const sumarMatrizesTradicional = (matriz1, matriz2) => {
+    comprobarFilasColumnas(matriz1, matriz2);  // Intentar la verificación de filas y columnas
+    let matrizSuma = [];
+    for (let f = 0; f < matriz1.length; f++) {
+        matrizSuma[f] = []; // Inicializar una fila vacía en matrizSuma
+
+        for (let c = 0; c < matriz1[f].length; c++) {
+            matrizSuma[f][c] = matriz1[f][c] + matriz2[f][c]; // Sumar elementos directamente
+        }
+    }
+    return matrizSuma;
+};
 
 let matriz1 = [
     [2,0,1],
@@ -55,5 +67,5 @@ try {
     const matrizFinal = sumarMatrizes(matriz1, matriz3);
     console.log(matrizFinal)
 } catch (error) {
-    console.log(error)
+    console.log(error.message)
 };
