@@ -31,13 +31,32 @@ const actualizarListadoDomCategorias = (arr, domElement) => {
         
         document.querySelector(`#listarcategoria${index}`).addEventListener('click',()=>{
             const elementosCategoria = arr[index][1];
-            console.log(elementosCategoria)
+            const elementosCategoriaLongitud = arr[index][1].length;
             listadoElementosCategoria.innerHTML = '';
-            elementosCategoria.forEach((element, index)=>{
-                listadoElementosCategoria.innerHTML += `<li>${element[0]} - <button> ${element[1]}</button></li>`;
+            elementosCategoria.forEach((element, indexListadoCategoria)=>{
+                listadoElementosCategoria.innerHTML += `<li>${element[0]} - <button id='accionDone${index}w${indexListadoCategoria}'>${element[1]}</button></li>`;
             })
+
+
+            for (let indexCategoria = 0; indexCategoria < arr.length; indexCategoria++) {
+                for (let indexElementoCategoria = 0; indexElementoCategoria < elementosCategoriaLongitud; indexElementoCategoria++) {
+                    document.querySelector(`#accionDone${indexCategoria}w${indexElementoCategoria}`).addEventListener('click',(e)=>{
+                       const arrElemento = elementosCategoria[indexElementoCategoria];
+                       const estado = arrElemento[1];
+                       const valor = arrElemento[0];
+                       if(estado == 'TODO'){
+                         arrElemento[1] = 'DONE'
+                       }
+                    });
+                }
+            }
+            
+
         })
     }
+ 
+  
+
 }
 
 formCategorias.addEventListener('submit',(e)=>{
@@ -63,7 +82,6 @@ formAnadirElementoCategorias.addEventListener('submit', (e) => {
     let valor_a_anadir = formAnadirElementoCategorias.querySelector('input').value
     arr_a_anadir.push([valor_a_anadir,'TODO'])
     anadirAcategoriasFormulario.classList = 'oculto';
-    console.log(ArrContenedor);
 })
 
 
