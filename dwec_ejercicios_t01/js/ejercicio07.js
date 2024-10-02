@@ -28,6 +28,18 @@ const funcionalidadBtnAnadirCategoria = (arrCat, indiceCat) => {
         });
 };
 
+
+const anadirFuncionalidadBtnTODO = (arrCat,indiceCat)=> {
+    
+    for (let indexElementoCategoria = 0; indexElementoCategoria < (arrCat[indiceCat].length-1); indexElementoCategoria++) {
+        console.log(`#accionDone${indiceCat}w${indexElementoCategoria}`)
+        document.querySelector(`#accionDone${indiceCat}w${indexElementoCategoria}`).addEventListener('click',(e)=>{
+            arrCat[indiceCat][1][0][1] = 'DONE'
+        });
+    }
+    
+}
+
 const funcionalidadBtnListarCategoria = (arrCat, indiceCat) => {
     document.querySelector(`#listarcategoria${indiceCat}`).addEventListener("click", () => {
         const elementosCategoria = arrCat[indiceCat][1];
@@ -41,24 +53,8 @@ const funcionalidadBtnListarCategoria = (arrCat, indiceCat) => {
             elementosCategoria.forEach((elementoLista, elementoIndexListado) => {
                 listadoElementosCategoria.innerHTML += `<li>${elementoLista[0]} - <button id='accionDone${indiceCat}w${elementoIndexListado}'>${elementoLista[1]}</button></li>`;
             });
-            /*
-                  for (let indexCategoria = 0; indexCategoria < arrCat.length; indexCategoria++) {
-                    console.log(elementosCategoriaLongitud, indiceCat)
-                    if(elementosCategoriaLongitud != 0){
-                        for (let indexElementoCategoria = 0; indexElementoCategoria < elementosCategoriaLongitud; indexElementoCategoria++) {
-                            document.querySelector(`#accionDone${indexCategoria}w${indexElementoCategoria}`).addEventListener('click',(e)=>{
-                               const arrElemento = elementosCategoria[indexElementoCategoria];
-                               const estado = arrElemento[1];
-                               const valor = arrElemento[0];
-                               if(estado == 'TODO'){
-                                 arrElemento[1] = 'DONE'
-                               }
-                            });
-                        }
-                    }
-                  }
-            */
-                
+
+            anadirFuncionalidadBtnTODO(arrCat, indiceCat)
         }
     });
 };
@@ -70,7 +66,7 @@ const anadirFuncionalidadBtnCategoria = (arrCat) => {
     }
 };
 
-const actualizarListadoDomCategorias = (arrCat, domElement) => {
+const actualizarListadoDomCategorias = (arrCat, domElement = listadoCategoria) => {
     domElement.innerHTML = "";
     indiceActualCategoria = 0;
 
