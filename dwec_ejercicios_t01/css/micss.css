@@ -10,9 +10,11 @@ p {
 
 
 .oculto{
-    display: none;
+   visibility: hidden;
 }
 
 .visible{
-    display: block;
+    visibility: visible;
 }
+
+

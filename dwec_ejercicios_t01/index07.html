@@ -8,33 +8,48 @@
     <link rel="stylesheet" href="css/micss.css" />
   </head>
   <body>
-    <div class="section">
-      <form id="categoriasFormulario">
-        <input
-          type="text"
-          placeholder="Añade una categoria"
-          id="inputFormCategoriaCrear"
-        />
-        <button type="submit" id="categoriaBtnCrear">Crear categoria</button>
-      </form>
+    <main>
+      <section>
+        <h2>Crear Categorias</h2>
+        <form id="categoriasFormulario">
+          <fieldset>
+            <legend>Formulario crear categorias</legend>
+            <input
+              type="text"
+              placeholder="Añade una categoria"
+              id="inputFormCategoriaCrear"
+            />
+            <button type="submit" id="categoriaBtnCrear">
+              Crear categoria
+            </button>
+          </fieldset>
+        </form>
+      </section>
 
-      <div id="listadoCategorias">
-        <ul>
-          <li>No hay elementos</li>
-        </ul>
-      </div>
+      <section>
+        <h2>Listado Categorias</h2>
+        <div class="contentSection">
+          <div id="listadoCategorias">
+            <ul>
+              <li>No hay elementos</li>
+            </ul>
+          </div>
 
-      <div id="listadoElementosCategoria">
-        <ul>
-           <li>No hemos seleccionado ninguna categoria a listar</li>
-        </ul>
-      </div>
+          <form id="anadirAcategoriasFormulario" class="oculto"></form>
+        </div>
+      </section>
 
-      <form id="anadirAcategoriasFormulario" class="oculto">
-       
-      </form>
-    </div>
-
+      <section>
+        <h2 id="tituloElementosCategoria">Elementos de la categoria</h2>
+        <div class="contentSection">
+          <div id="listadoElementosCategoria">
+            <ul>
+              <li>No hemos seleccionado ninguna categoria a listar</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
     <!-- Enlace al archivo JavaScript -->
     <script src="./js/ejercicio07.js"></script>
   </body>

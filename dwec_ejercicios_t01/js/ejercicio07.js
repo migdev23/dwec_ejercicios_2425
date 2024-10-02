@@ -1,9 +1,10 @@
 let arrContendor = [];
-
+//TODO OPTIMIZAR CODIGO (html, js) (ACLARAR VARIBALES, ACLARAR MEJOR LAS ACCIONES DE LAS FUNCIONES, NOMBRES DE LOS ID HTML)
 //DOM
 let inputCrearCategoria = document.querySelector("#inputFormCategoriaCrear");
 let categoriaBtnCrear = document.querySelector("#categoriaBtnCrear");
 let formCategorias = document.querySelector("#categoriasFormulario");
+let tituloElementosCategoria = document.querySelector('#tituloElementosCategoria')
 let formAnadirElementoCategorias = document.querySelector(
     "#anadirAcategoriasFormulario"
 );
@@ -21,34 +22,25 @@ const funcionalidadBtnAnadirCategoria = (arrCat, indiceCat) => {
             const nombreCategoria = arrCat[indiceCat][0];
             indiceActualCategoria = indiceCat;
             anadirAcategoriasFormulario.innerHTML = `
+             <fieldset>
+            <legend>Añadir a la categoria: ${nombreCategoria}</legend>
            <input type="text" placeholder="Añade un elemento a la categoria: ${nombreCategoria}" />
            <button type="submit">Añadir a la categoria: ${nombreCategoria}</button>
-          `;
+            </fieldset>
+           `;
             anadirAcategoriasFormulario.classList = "visible";
         });
 };
 
-
-const anadirFuncionalidadBtnTODO = (arrCat,indiceCat)=> {
-    
-    for (let indexElementoCategoria = 0; indexElementoCategoria < (arrCat[indiceCat].length-1); indexElementoCategoria++) {
-        console.log(`#accionDone${indiceCat}w${indexElementoCategoria}`)
-        document.querySelector(`#accionDone${indiceCat}w${indexElementoCategoria}`).addEventListener('click',(e)=>{
-            arrCat[indiceCat][1][0][1] = 'DONE'
-        });
-    }
-    
-}
-
 const funcionalidadBtnListarCategoria = (arrCat, indiceCat) => {
     document.querySelector(`#listarcategoria${indiceCat}`).addEventListener("click", () => {
         const elementosCategoria = arrCat[indiceCat][1];
-        const elementosCategoriaLongitud = arrCat[indiceCat][1].length;
+        const nombreCategoria = arrCat[indiceCat][0];
+        tituloElementosCategoria.innerHTML = `Elementos de la categoria: ${nombreCategoria}`
         listadoElementosCategoria.innerHTML = "";
 
-        if (elementosCategoriaLongitud == 0) {
-            listadoElementosCategoria.innerHTML =
-                "<li>No hay elementos en esta categoria</li>";
+        if (elementosCategoria.length == 0) {
+            listadoElementosCategoria.innerHTML = `<li>No hay elementos en ${nombreCategoria}</li>`;
         } else {
             elementosCategoria.forEach((elementoLista, elementoIndexListado) => {
                 listadoElementosCategoria.innerHTML += `<li>${elementoLista[0]} - <button id='accionDone${indiceCat}w${elementoIndexListado}'>${elementoLista[1]}</button></li>`;
@@ -58,6 +50,17 @@ const funcionalidadBtnListarCategoria = (arrCat, indiceCat) => {
         }
     });
 };
+
+const anadirFuncionalidadBtnTODO = (arrCat,indiceCat)=> {
+    const elementosCategoria = arrCat[indiceCat][1];
+    elementosCategoria.forEach((elementoLista, elementoIndexListado) => {
+         document.querySelector(`#accionDone${indiceCat}w${elementoIndexListado}`).addEventListener('click',(e)=>{
+            elementoLista[1] = 'DONE'
+            document.querySelector(`#accionDone${indiceCat}w${elementoIndexListado}`).innerHTML = elementoLista[1];
+        });
+    });   
+}
+
 
 const anadirFuncionalidadBtnCategoria = (arrCat) => {
     for (let index = 0; index < arrCat.length; index++) {
@@ -93,5 +96,6 @@ formAnadirElementoCategorias.addEventListener("submit", (e) => {
     const arr_a_anadir = arrContendor[indiceActualCategoria][1];
     let valor_a_anadir = formAnadirElementoCategorias.querySelector("input").value;
     arr_a_anadir.push([valor_a_anadir, "TODO"]);
+
     anadirAcategoriasFormulario.classList = "oculto";
 });
