@@ -11,7 +11,7 @@
     <main>
       <section>
         <h2>Crear Categorias</h2>
-        <form id="categoriasFormulario">
+        <form id="formCrearCategorias">
           <fieldset>
             <legend>Formulario crear categorias</legend>
             <input
@@ -19,31 +19,30 @@
               placeholder="Añade una categoria"
               id="inputFormCategoriaCrear"
             />
-            <button type="submit" id="categoriaBtnCrear">
+            <button type="submit" id="btnCrearCategoria">
               Crear categoria
             </button>
           </fieldset>
         </form>
       </section>
 
-      <section>
+      <section id="sectionListarCategorias" class="oculto">
         <h2>Listado Categorias</h2>
         <div class="contentSection">
-          <div id="listadoCategorias">
-            <ul>
+          <div>
+            <ul id="ulListarCategoria">
               <li>No hay elementos</li>
             </ul>
           </div>
-
-          <form id="anadirAcategoriasFormulario" class="oculto"></form>
+          <form id="formCrearElementoCategorias" class="oculto"></form>
         </div>
       </section>
 
-      <section>
-        <h2 id="tituloElementosCategoria">Elementos de la categoria</h2>
+      <section id="sectionListarElementosCategoria" class="oculto">
+        <h2 id="h2ElementosCategoria">Elementos de la categoria</h2>
         <div class="contentSection">
-          <div id="listadoElementosCategoria">
-            <ul>
+          <div>
+            <ul id="ulListarElementosCategoria">
               <li>No hemos seleccionado ninguna categoria a listar</li>
             </ul>
           </div>
