@@ -1,9 +1,9 @@
 //VARIABLES DOM
+let formCrearElementoCategoriasDOM = document.querySelector("#formCrearElementoCategorias");
+let formCrearCategoriasDOM = document.querySelector("#formCrearCategorias");
 let inputCrearCategoriaDOM = document.querySelector("#inputFormCategoriaCrear");
 let btnCrearCategoriaDOM = document.querySelector("#btnCrearCategoria");
-let formCrearCategoriasDOM = document.querySelector("#formCrearCategorias");
 let h2ElementosCategoriaDOM = document.querySelector('#h2ElementosCategoria')
-let formCrearElementoCategoriasDOM = document.querySelector("#formCrearElementoCategorias");
 let ulListarCategoriaDOM = document.querySelector("#ulListarCategoria");
 let ulListarElementosCategoriaDOM = document.querySelector("#ulListarElementosCategoria");
 
@@ -28,7 +28,9 @@ const funcionalidadBtnAnadirCategoria = (arrCat, indiceCat) => {
             </fieldset>
             `;
             formCrearElementoCategoriasDOM.classList = "visible";
-        });
+
+            visualizarElementoDom(false, sectionListarElementosCategoriaDOM)
+    });
 };
 
 const funcionalidadBtnListarCategoria = (arrCat, indiceCat, domElementListarElementosCategoria = ulListarElementosCategoriaDOM) => {
@@ -37,7 +39,7 @@ const funcionalidadBtnListarCategoria = (arrCat, indiceCat, domElementListarElem
         const nombreCategoria = arrCat[indiceCat][0];
         h2ElementosCategoriaDOM.innerHTML = `Elementos de la categoria: ${nombreCategoria}`
         domElementListarElementosCategoria.innerHTML = "";
-        visualizarSection(true, sectionListarElementosCategoriaDOM)
+        visualizarElementoDom(true, sectionListarElementosCategoriaDOM)
         if (elementosCategoria.length == 0) {
             domElementListarElementosCategoria.innerHTML = `<li>No hay elementos en ${nombreCategoria}</li>`;
         } else {
@@ -47,6 +49,8 @@ const funcionalidadBtnListarCategoria = (arrCat, indiceCat, domElementListarElem
 
             anadirFuncionalidadBtnTODO(arrCat, indiceCat)
         }
+
+        visualizarElementoDom(false, formCrearElementoCategoriasDOM)
     });
 };
 
@@ -79,9 +83,9 @@ const actualizarListadoDomCategorias = (arrCat, domElementListarCategorias = ulL
     anadirFuncionalidadBtnCategoria(arrCat);
 };
 
-const visualizarSection = (visible = true, domElementSection) => {
-    if(visible) domElementSection.classList = "visible"
-    else domElementSection.classList = "oculto"
+const visualizarElementoDom = (visible = true, domElement) => {
+    if(visible) domElement.classList = "visible"
+    else domElement.classList = "oculto"
 }
  
 
@@ -96,12 +100,16 @@ formCrearCategoriasDOM.addEventListener("submit", (e) => {
         actualizarListadoDomCategorias(arrContendor);
     }
 
-    visualizarSection(true, sectionListarCategoriasDOM)
+    inputCrearCategoriaDOM.value = ''
+    visualizarElementoDom(true, sectionListarCategoriasDOM)
+    visualizarElementoDom(false, sectionListarElementosCategoriaDOM)
+    visualizarElementoDom(false, formCrearElementoCategoriasDOM)
 });
 
 formCrearElementoCategoriasDOM.addEventListener("submit", (e) => {
     e.preventDefault();
-    let inputValorFormCrearElementosCategoriasDOM = formCrearElementoCategoriasDOM.querySelector("input").value;
-    arrContendor[indiceActualCategoria][1].push([inputValorFormCrearElementosCategoriasDOM, "TODO"]);
-    formCrearElementoCategoriasDOM.classList = "oculto";
+    let inputCrearElmentoCategoriasDOM = formCrearElementoCategoriasDOM.querySelector("input");
+    arrContendor[indiceActualCategoria][1].push([inputCrearElmentoCategoriasDOM.value, "TODO"]);
+    visualizarElementoDom(false, formCrearElementoCategoriasDOM)
+    inputCrearElmentoCategoriasDOM.value = ''
 });
