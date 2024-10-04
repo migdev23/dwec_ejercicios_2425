@@ -119,14 +119,25 @@ const contieneFormatoFecha = (cadena) => {
 };
 
 buttonComprobar.addEventListener("click", () => {
+
   let inputFechaValor = inputFecha.value.trim();
+  
   const {comprobacionFomatoFecha, arrayDiaMesAnio} = contieneFormatoFecha(inputFechaValor);
 
   if(comprobacionFomatoFecha){
+  
     const [dia, mes, anio] = arrayDiaMesAnio;
+  
     let fecha = new Date(0);
+  
     fecha.setFullYear(anio,(mes-1),dia);
+  
     console.log('Formato de fecha correcto');
-  } else console.log('Formato de fecha incorrecto');
+  
+  } else {
+  
+    console.log('Formato de fecha incorrecto')
+  
+  };
 
 });
