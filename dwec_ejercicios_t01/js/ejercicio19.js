@@ -17,6 +17,8 @@ const contieneFormatoHourMinutes = (cadena) => {
   if (hour.length != 2 || minutes.length != 2)
     return { comprobacionFomatoHourMinutes: false, arrayHourMinutes };
 
+  
+  
   if (
     !Number.isInteger(Number(hour)) ||
     !Number.isInteger(Number(minutes)) ||
