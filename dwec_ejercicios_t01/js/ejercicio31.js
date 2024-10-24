@@ -44,7 +44,8 @@ const validaDNIyCIF = (cadena) => {
         const codeControl = (sumFinal + "").length == 2 ? (10 - parseInt((sumFinal + "")[1])) : (10-parseInt((sumFinal + "")[0]));
 
         if(isNaN(cadena.charAt(cadena.length-1)) && cadena.charAt(cadena.length-1) != 'X' && cadena.charAt(cadena.length-1) != 'P'){
-            if(letrasAJ[codeControl] == cadena.charAt(cadena.length-1)){
+            console.log(letrasAJ[codeControl-1], cadena.charAt(cadena.length-1))
+            if(letrasAJ[codeControl-1] == cadena.charAt(cadena.length-1)){
                 statusReturn = true
             };
         }else if(!isNaN(cadena.charAt(cadena.length-1))){
