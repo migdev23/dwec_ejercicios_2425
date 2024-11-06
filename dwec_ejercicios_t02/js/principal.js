@@ -10,8 +10,10 @@ const funcion1 = () => {
     // console.log(alumno2.estaAprobado());
     // alumno2.cambiarNotas(1,1,1)
     // console.log(alumno2.estaAprobado());
-    const aula1 = new Aula();
-    aula1.pedirDatosUnAlumno();
+    const aula1 = new Aula(2,8803,'aula daw');
+    aula1.pedirDatos();
+    console.log(aula1.mostrarDatos());
+    console.log(aula1.mediasNotas());
 }
 
 funcion1();

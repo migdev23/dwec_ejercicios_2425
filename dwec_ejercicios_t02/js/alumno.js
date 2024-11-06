@@ -6,11 +6,11 @@ function Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo){
 
     this._edad = 0;
     
-    this._notaT1 = parseFloat(notaT1.toFixed(2));
+    this._notaT1 = notaT1;
     
-    this._notaT2 = parseFloat(notaT2.toFixed(2));
+    this._notaT2 = notaT2;
     
-    this._notaT3 = parseFloat(notaT3.toFixed(2)); 
+    this._notaT3 = notaT3; 
     
     this._notaFinal = 0;
 
@@ -19,7 +19,7 @@ function Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo){
     this._fechaNac = fechaNac; 
 
     this.calcularNota = () => {
-        this._notaFinal = ((this._notaT1 + this._notaT2 + this._notaT3)/3).toFixed(2);
+        this._notaFinal = ((this._notaT1 + this._notaT2 + this._notaT3)/3);
     }
 
     this.cambiarNotas = (notaT1, notaT2, notaT3) => {

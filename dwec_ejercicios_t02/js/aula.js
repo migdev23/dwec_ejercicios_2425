@@ -19,7 +19,7 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
             nota = prompt(`Introduce la nota del Trimestre: ${trimestre}, (0 al 10)`);
         while (!this.validarNota(nota));
 
-        return  Number.parseFloat(nota).toFixed(2)
+        return  Number.parseFloat(nota).toFixed(2);
     }
 
 
@@ -81,7 +81,28 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         do
             sexo = prompt('Introduce el sexo del alumno (h,m,o): ');
         while (!this.validarSexoAlumno(sexo));
-        return sexo;
+        return sexo.toUpperCase();
+    }
+
+
+    this.validarFecha = (fecha) => {
+        const fechaObject = new Date(fecha);
+        console.log()
+        if((fechaObject.getFullYear() == fecha.split('-')[0]) 
+            && ((fechaObject.getMonth()+1) == fecha.split('-')[1]) 
+            && (fechaObject.getDate() == fecha.split('-')[2])){
+                return true;
+            }
+
+            return false;
+    }
+
+    this.pedirFechaPrompt = () => {
+        let fecha = "";
+        do {
+            fecha = prompt('Introduce la fecha YYYY-MM-DD');
+        } while (!this.validarFecha(fecha));
+        return fecha;
     }
 
     this.pedirDatosUnAlumno = () => {
@@ -90,7 +111,7 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
 
         const nombre = this.pedirNombrePrompt();
         const dni = this.pedirDniAlumnoPrompt();
-        const fechaNac = prompt('Introduce la fecha de nacimiento:');
+        const fechaNac = this.pedirFechaPrompt();
         const notaT1 = this.pedirNotaAlumnoPrompt(1);
         const notaT2 = this.pedirNotaAlumnoPrompt(2);
         const notaT3 = this.pedirNotaAlumnoPrompt(3);
@@ -100,9 +121,25 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
     };
 
     this.pedirDatos = () => {
-        for (let index = 1; index <= this._arrayAlumnos; index++)
+        for (let index = 1; index <= this._numeroAlumnosAula; index++)
             this._arrayAlumnos.push(this.pedirDatosUnAlumno());
     };
+
+    this.mostrarDatos = () => {
+        let text = "";
+        for (let index = 0; index < this._numeroAlumnosAula; index++)
+            text += this._arrayAlumnos[index].mostrarInformacion() + '\n';
+        return text;
+    }
+
+    this.mediasNotas = () => {
+        let media = 0;
+        for (let index = 1; index <= this._numeroAlumnosAula; index++)
+            media += this._arrayAlumnos[index].notaFinal;
+
+        return media/this._numeroAlumnosAula;
+    };
+
 
     Object.defineProperty(this, 'numeroAlumnosAula', {
         get: () => { return this._numeroAlumnosAula },
