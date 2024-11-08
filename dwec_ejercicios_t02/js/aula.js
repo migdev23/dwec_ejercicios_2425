@@ -115,7 +115,7 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         const notaT1 = this.pedirNotaAlumnoPrompt(1);
         const notaT2 = this.pedirNotaAlumnoPrompt(2);
         const notaT3 = this.pedirNotaAlumnoPrompt(3);
-        const sexo = this.pedirSexoPrompt();
+        const sexo = this.pedirSexoPrompt(); 
 
         return new Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo);
     };
@@ -132,14 +132,50 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return text;
     }
 
-    this.mediasNotas = () => {
+    this.mediasNotas = () => { 
         let media = 0;
-        for (let index = 1; index <= this._numeroAlumnosAula; index++)
+        
+        for (let index = 0; index < this._numeroAlumnosAula; index++)
             media += this._arrayAlumnos[index].notaFinal;
-
+        
+            
         return media/this._numeroAlumnosAula;
     };
 
+    this.mejorNota = () => {
+        //TODO: Hacer mejora sacar nota maxima primero y luego meter alumnos suspensos
+        let nota = 0;
+        let alumnosMejoresNotas = [];
+        this._arrayAlumnos.forEach(alumno => {
+            if(alumno.notaFinal == nota){
+                alumnosMejoresNotas.push(alumno);
+            }else if (alumno.notaFinal > nota){
+                nota = alumno.notaFinal;
+                alumnosMejoresNotas = [];
+                alumnosMejoresNotas.push(alumno);
+            }
+        });
+
+        return alumnosMejoresNotas;
+    }
+
+    this.porcentajeSuspensos = () => {
+        let numeroSuspensos = 0;
+        
+        this._arrayAlumnos.forEach(alumno => {
+            if(!alumno.estaAprobado()) numeroSuspensos+=1;   
+        })
+
+        let porcentajeSuspensos = ((numeroSuspensos*100)/this._numeroAlumnosAula);
+
+        return porcentajeSuspensos;
+    }
+
+    this.mostrarSuspensosAprobados = () => {
+        let porcentajeSuspensos = this.porcentajeSuspensos()
+        let porcentajeAprobados = (100-porcentajeSuspensos);
+        return `Aprobados:  ${porcentajeAprobados}% Suspensos:${porcentajeSuspensos}%`
+    }
 
     Object.defineProperty(this, 'numeroAlumnosAula', {
         get: () => { return this._numeroAlumnosAula },
