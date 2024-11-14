@@ -18,6 +18,8 @@ function Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo){
 
     this._fechaNac = fechaNac; 
 
+    this._grupo = null;
+
     this.calcularNota = () => {
         this._notaFinal = (this._notaT1 + this._notaT2 + this._notaT3)/3;
     }
@@ -37,15 +39,15 @@ function Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo){
 
     this.mostrarInformacion = () => {
         return `
-            ${this._nombre} 
-            ${this._dni} 
-            ${this._notaT1}
-            ${this._notaT2}
-            ${this._notaT3}
-            ${this._notaFinal}
-            ${this._edad}
-            ${this._sexo}
-            ${this._fechaNac}
+            Nombre: ${this._nombre} 
+            Dni: ${this._dni} 
+            Nota Trimestre 1: ${this._notaT1}
+            Nota Trimestre 2: ${this._notaT2}
+            Nota Trimestre 3: ${this._notaT3}
+            Nota Final: ${this._notaFinal}
+            Edad: ${this._edad}
+            Sexo: ${this._sexo}
+            Fecha Nacimiento: ${this._fechaNac}
         `
     }
 
@@ -74,6 +76,12 @@ function Alumno(nombre, fechaNac, dni, notaT1, notaT2, notaT3, sexo){
         get : ()=>{return this._nombre},
         set : (value)=>{this._nombre = value}
     });
+
+    Object.defineProperty(this, 'grupo', {
+        get : ()=>{return this._grupo},
+        set : (value)=>{this._grupo = value}
+    });
+
 
     Object.defineProperty(this, 'dni', {
         get : ()=>{return this._dni},

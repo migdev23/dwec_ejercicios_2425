@@ -8,6 +8,10 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
 
     this._arrayAlumnos = [];
 
+    this._grupos = [];
+
+    /*NOTA */
+
     this.validarNota = (nota) => {
         if (isNaN(nota) || nota < 0 || nota > 10) return false;
         return true;
@@ -22,7 +26,7 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return  Number.parseFloat(nota).toFixed(2);
     }
 
-
+      /*DNI */
     this.validarDniAlumno = (cadena) => {
         const patronDNI = /^(\d{8})([A-Z])$/;
         const dniLetrasArr = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'];
@@ -55,6 +59,9 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return dni;
     }
 
+
+    /*Nombre alumno */
+
     this.validarNombreAlumno = (nombre) => {
         return (isNaN(nombre) && nombre != null && nombre != undefined && nombre.trim().length > 0) ? true : false;
     }
@@ -67,6 +74,8 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return nombre;
     }
 
+
+    /*Sexo alumno */
 
     this.validarSexoAlumno = (sexo) => {
         if (sexo.toUpperCase() == 'O' || sexo.toUpperCase() == 'H' || sexo.toUpperCase() == 'M') 
@@ -84,6 +93,7 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return sexo.toUpperCase();
     }
 
+    /*Fecha nacimiento alumno */
 
     this.validarFecha = (fecha) => {
         const fechaObject = new Date(fecha);
@@ -105,6 +115,54 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         return fecha;
     }
 
+
+    /* Grupos */
+    this.validarGrupo = (grupo) => {
+        if(grupo.nombre != null && grupo.nombre.trim() != ""){
+            const gruposDuplicados = this._grupos.filter((grupoFilter) => grupoFilter.nombre === grupo.nombre).length > 0 ? false : true
+            return gruposDuplicados;
+        }else{
+            return false
+        }
+    }
+
+    this.pedirGruposPrompt = () => {
+        let nombre = null;
+
+        const grupo = {
+            nombre,
+            alumnos:[]
+        }
+
+        do {
+            nombre = prompt(`Introduce el nombre del nuevo grupo correctamente`);
+            grupo.nombre = nombre;
+        } while (!this.validarGrupo(grupo));
+
+        return grupo;
+    }
+
+    this.crearGruposPrompt = () => {
+        let cantidadGrupos = 0;
+
+        do {
+            cantidadGrupos = prompt(`Indica la cantidad de grupos que quieres crear para el aula "${this._identificadorAula}" (introduce un numero)`);
+            console.log(isNaN(cantidadGrupos))
+            console.log(parseFloat(cantidadGrupos) < 1)
+            console.log(cantidadGrupos.trim() == '')
+        } while (isNaN(cantidadGrupos) || parseInt(cantidadGrupos) < 1 || cantidadGrupos.trim() == '');
+
+        for (let index = 0; index < parseFloat(cantidadGrupos); index++) {
+            let grupo = this.pedirGruposPrompt();
+            this._grupos.push(grupo);
+            alert(`Has añadido correctamente el grupo "${grupo.nombre}" (${index+1}-${cantidadGrupos}) `)
+        }
+
+    }
+
+
+    /*Funciones aula */
+
     this.pedirDatosUnAlumno = () => {
 
         //TODO: HACER VALIDACIONES Y BUCLE
@@ -123,12 +181,17 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
     this.pedirDatos = () => {
         for (let index = 1; index <= this._numeroAlumnosAula; index++)
             this._arrayAlumnos.push(this.pedirDatosUnAlumno());
+    
+        console.log(this._arrayAlumnos);
     };
 
     this.mostrarDatos = () => {
         let text = "";
-        for (let index = 0; index < this._numeroAlumnosAula; index++)
-            text += this._arrayAlumnos[index].mostrarInformacion() + '\n';
+        console.log(this._numeroAlumnosAula);
+        for (let index = 0; index < this._numeroAlumnosAula; index++){
+            text += this._arrayAlumnos[index].mostrarInformacion() + ' ';
+            console.log(text)
+        }
         return text;
     }
 
