@@ -72,13 +72,19 @@ const funcion2 = () => {
 }
 
 const funcion3 = () => {
+    
     let numeroAlumnos = 2;
-
+    
     const aula1 = new Aula(numeroAlumnos, 8803, 'aula daw');
     
+    aula1.pedirDatos();
+
     aula1.crearGruposPrompt();
     
-}
+    alert(aula1.mostrarTodosLosAlumnos());
+    alert(aula1.mostrarAlumnosPorGrupo());
+
+};
 
 //funcion1();
 

@@ -143,14 +143,12 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
     }
 
     this.crearGruposPrompt = () => {
+
         let cantidadGrupos = 0;
 
         do {
-            cantidadGrupos = prompt(`Indica la cantidad de grupos que quieres crear para el aula "${this._identificadorAula}" (introduce un numero)`);
-            console.log(isNaN(cantidadGrupos))
-            console.log(parseFloat(cantidadGrupos) < 1)
-            console.log(cantidadGrupos.trim() == '')
-        } while (isNaN(cantidadGrupos) || parseInt(cantidadGrupos) < 1 || cantidadGrupos.trim() == '');
+            cantidadGrupos = parseInt(prompt(`Indica la cantidad de grupos que quieres crear para el aula "${this._identificadorAula}" (introduce un numero)`));
+        } while (isNaN(cantidadGrupos) || cantidadGrupos < 1);
 
         for (let index = 0; index < parseFloat(cantidadGrupos); index++) {
             let grupo = this.pedirGruposPrompt();
@@ -158,6 +156,40 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
             alert(`Has añadido correctamente el grupo "${grupo.nombre}" (${index+1}-${cantidadGrupos}) `)
         }
 
+    }
+    
+
+    this.mostrarTodosLosAlumnos = () => {
+        return this.mostrarDatos()
+    }
+
+    this.mostrarAlumnosPorGrupo = () => {
+        let cadenaDevuelta = "";
+        let alumnosConGrupo = [];
+
+        this._grupos.forEach(({nombre, alumnos})=>{
+
+            cadenaDevuelta += `\n ---------------- ${nombre} ------------------ \n`
+
+            if(alumnos.length != 0){
+                alumnos.forEach((alumno) => {
+                    cadenaDevuelta += `* ${alumno.mostrarInformacion()} \n`
+                    alumnosConGrupo.push(alumno);
+                });
+            }else{
+                cadenaDevuelta += `No hay alumnos en ${nombre}`;
+            } 
+
+        });
+
+        if(alumnosConGrupo.length != this._arrayAlumnos.length){
+            cadenaDevuelta += `\n ---------------- Alumnos sin asignar ------------------ \n`;
+            let alumnosSinGrupos = this._arrayAlumnos.filter(alumno => !alumnosConGrupo.includes(alumno));
+            alumnosSinGrupos.forEach((alumno) => cadenaDevuelta += `* ${alumno.mostrarInformacion()} \n`);
+        }
+
+
+        return cadenaDevuelta;
     }
 
 
@@ -190,7 +222,6 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
         console.log(this._numeroAlumnosAula);
         for (let index = 0; index < this._numeroAlumnosAula; index++){
             text += this._arrayAlumnos[index].mostrarInformacion() + ' ';
-            console.log(text)
         }
         return text;
     }
