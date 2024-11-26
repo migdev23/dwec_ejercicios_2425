@@ -22,9 +22,9 @@ const funcion2 = () => {
     numeroAlumnos = parseFloat(numeroAlumnos);
 
     const aula1 = new Aula(numeroAlumnos, 8803, 'aula daw');
-    
+
     let opcionMenu = 0;
-    
+
     aula1.pedirDatos();
 
     do {
@@ -72,17 +72,61 @@ const funcion2 = () => {
 }
 
 const funcion3 = () => {
-    
+
     let numeroAlumnos = 2;
-    
+
     const aula1 = new Aula(numeroAlumnos, 8803, 'aula daw');
-    
+
     aula1.pedirDatos();
 
     aula1.crearGruposPrompt();
-    
-    alert(aula1.mostrarTodosLosAlumnos());
-    alert(aula1.mostrarAlumnosPorGrupo());
+
+    do {
+        opcionMenu = prompt(`Menu para probar los metodos del aula, que contiene dos alumnos:\n
+                Opcion (1): Mostrar todos los alumnos,\n
+                Opcion (2): Mostrar alumnos por grupo,\n
+                Opcion (3): Agregar alumno a un grupo (si ya pertenece a otro grupo se cambia),\n
+                Opcion (4): Eliminar un grupo,\n
+                Opcion (5): Mostrar resumen de grupos, \n
+                Opcion (6): Calcular media de un grupo,\n
+                Opcion (7): Mostrar alumno con mejor nota de un grupo \n
+                Opcion (8): Porcentaje de suspensos en un grupo \n
+                Opcion (0): Salir\n
+            `);
+
+        if (isNaN(opcionMenu) || opcionMenu < 1 || opcionMenu > 7) {
+            alert('Escoje una opcion valida 1 - 7');
+            opcionMenu = -1;
+        } else {
+            switch (opcionMenu) {
+                case "1":
+                    alert(aula1.mostrarTodosLosAlumnos());
+                    break;
+                case "2":
+                    alert(aula1.mostrarAlumnosPorGrupo());
+                    break;
+                case "3":
+                    aula1.agregarAlumnoGrupo();
+                    break;
+                case "4":
+                    aula1.eliminarGrupo();
+                    break;
+                case "5":
+                    alert(aula1.mostrarResumenDeGrupo());
+                    break;
+                case "6":
+                    alert(aula1.calcularMediaDeUnGrupo());
+                    break;
+                case "7":
+                    alert(aula1.mejorNotaGrupo());
+                    break;
+                case "8":
+                    alert(aula1.porcentajeSuspensosGrupo());
+                    break;
+            }
+        }
+
+    } while (opcionMenu != 0);
 
 };
 
