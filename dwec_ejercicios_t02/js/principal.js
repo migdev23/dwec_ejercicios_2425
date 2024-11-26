@@ -94,8 +94,8 @@ const funcion3 = () => {
                 Opcion (0): Salir\n
             `);
 
-        if (isNaN(opcionMenu) || opcionMenu < 1 || opcionMenu > 7) {
-            alert('Escoje una opcion valida 1 - 7');
+        if (isNaN(opcionMenu) || opcionMenu < 0 || opcionMenu > 8) {
+            alert('Escoje una opcion valida 0 - 8');
             opcionMenu = -1;
         } else {
             switch (opcionMenu) {
