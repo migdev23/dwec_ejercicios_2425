@@ -59,17 +59,18 @@ Aula.prototype.mostrarResumenDeGrupo = function () {
     let alumnosConGrupo = [];
 
     this._grupos.forEach(({ nombre, alumnos }) => {
-        cadenaDevuelta += `\n ---------------- ${nombre} ------------------ \n`;
 
+        cadenaDevuelta += `\n ---------------- ${nombre} ------------------ \n`;
+        
         if (alumnos.length != 0) {
             alumnos.forEach((alumno) => {
                 cadenaDevuelta += `* ${alumno.mostrarInformacion()} \n`;
-
                 alumnosConGrupo.push(alumno);
             });
         } else {
             cadenaDevuelta += `No hay alumnos en ${nombre}`;
         }
+
     });
 
     if (alumnosConGrupo.length != this._arrayAlumnos.length) {
@@ -82,6 +83,7 @@ Aula.prototype.mostrarResumenDeGrupo = function () {
         alumnosSinGrupos.forEach(
             (alumno) => (cadenaDevuelta += `* ${alumno.mostrarInformacion()} \n`)
         );
+    
     }
 
     return cadenaDevuelta;
@@ -255,15 +257,15 @@ Aula.prototype.agregarAlumnoGrupo = function () {
 
 Aula.prototype.eliminarGrupo = function () {
     const grupoElegido = this.selecionarUnGrupoPrompt(`Introduce el grupo que quieres ELIMINAR (seleccionando el numero de la izquierda), los alumnos que pertenezcan a este grupo, pasaran a tener un grupo sin asignar:`);
-    if(this._grupos.length == 1){
+    if (this._grupos.length == 1) {
         alert('No puedes eliminar todos los grupos');
-    }else{
+    } else {
         this._arrayAlumnos.forEach((alumno) => {
             if (alumno.grupo == grupoElegido.nombre) {
                 alumno.grupo = null;
             }
         });
-    
+
         this._grupos = this._grupos.filter((grupo) => grupo != grupoElegido);
         alert("Grupo Eliminado Correctamente");
     }

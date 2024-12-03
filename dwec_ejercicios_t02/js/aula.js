@@ -10,7 +10,6 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
     this._grupos = [];
 
     /*NOTA */
-
     this.validarNota = (nota) => {
         if (isNaN(nota) || nota < 0 || nota > 10 || nota == "") return false;
         return true;
@@ -194,7 +193,6 @@ function Aula(numeroAlumnosAula, identificadorAula, descripcionAula) {
                 alumnosMejoresNotas.push(alumno);
             }
         });
-
         return alumnosMejoresNotas;
     };
 
