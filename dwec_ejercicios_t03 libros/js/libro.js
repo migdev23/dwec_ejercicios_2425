@@ -23,11 +23,12 @@ class Libro {
     }
 
     mostrarDatosLibro(){
-
+        return `${this.#titulo} - ${this.#autor} - ${this.#precio}`;
     }
 
-    cambiarPrecioLibro(){
-
+    cambiarPrecioLibro(precio){
+        if(!Utils.validarPrecio(precio)) throw new Error("Error al validar el precio");
+        this.#precio = precio
     }
 
 }
