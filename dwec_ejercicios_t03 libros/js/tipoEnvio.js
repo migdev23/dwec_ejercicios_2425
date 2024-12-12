@@ -1,5 +1,7 @@
 class tipoEnvio {
+
     #nombre
+    
     #precio
 
     constructor(nombre, precio) {
@@ -7,6 +9,10 @@ class tipoEnvio {
         if(!Utils.validarPrecio(precio)) throw new Error("Hubo un error al validar el precio");
         this.#nombre = nombre;
         this.#precio = precio;
+    }
+
+    mostrarTipoEnvio(){
+        return `Envio: ${nombre}, precio: ${$precio}`
     }
     
     get nombre () {

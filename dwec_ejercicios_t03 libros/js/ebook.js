@@ -1,5 +1,6 @@
 class Ebook extends Libro {
     #tamanoArchivo
+    
     #formato
 
     constructor(titulo, autor, precio, tamanoArchivo, formato) {
